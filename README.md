@@ -90,7 +90,7 @@ Power BI visualizations to explore:
 
 ### Step 1: Set Up the Environment
 Clone this repository:
-git clone https://github.com/AyaSaadawi/Superstore-BI-Dashboard-Analysis1
+git clone https://github.com/AyaSaadawi/Superstore-BI-Dashboard-Analysis
 
 ### Step 2: Execute the ETL Process
 1. Run extract_data.py to extract raw datasets:
