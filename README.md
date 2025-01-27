@@ -51,6 +51,7 @@ Power BI visualizations to explore:
 Sales Forecasting: Predict future sales using a Linear Regression model trained on historical sales data.
 
 Model Comparison: Evaluate multiple models (Random Forest, Gradient Boosting, Linear Regression) to select the best-performing one based on metrics like Mean Squared Error (MSE) and Mean Absolute Error (MAE).
+
 ---
 
 ## Technologies Used
