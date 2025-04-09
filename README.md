@@ -1,157 +1,155 @@
-# Superstore Dataset Analysis and Dashboard
+# Blood Cell Detection and Classification Using YOLOv12
 
 ## Project Overview
-This project delves into analyzing the Superstore dataset to uncover actionable insights that can drive business growth and sustainability. By leveraging Python for ETL (Extract, Transform, Load) processes, MySQL for data storage, and Power BI for visualization, the project provides an end-to-end solution for analyzing and visualizing sales, customer behavior, and profitability metrics. The final output includes a dynamic, interactive BI dashboard highlighting trends and patterns essential for strategic decision-making.
+
+This project focuses on automating the detection and classification of blood cells in microscopic images using YOLOv12, a state-of-the-art object detection model. The goal is to streamline the analysis of blood smears, which is crucial for diagnosing blood disorders. By leveraging deep learning, this project aims to offer an efficient, accurate, and real-time solution for detecting red blood cells (RBCs), white blood cells (WBCs), and platelets. This method is particularly valuable in clinical settings, improving diagnostic speed and objectivity.
 
 ---
 
 ## Key Objectives
 
-### Data Cleaning and Transformation
-Address inconsistencies, missing values, and redundant information in the dataset to ensure accuracy and reliability.
+### Data Preprocessing and Augmentation
+- **Data Cleaning**: Ensuring image quality and consistency by resizing, auto-orienting, and performing minor adjustments.
+- **Data Augmentation**: Using techniques like flipping, rotation, and blur to create a more diverse and robust dataset.
 
-### Data Warehouse Development
-Design and implement a structured schema in MySQL for efficient querying and reporting.
+### YOLOv12 Architecture
+- **Object Detection**: Detecting and classifying RBCs, WBCs, and platelets using YOLOv12, which excels at small object detection.
 
-### Data Analysis
-Extract insights on sales trends, customer segmentation, and profitability metrics to identify growth opportunities.
-
-### Data Visualization
-Develop an interactive Power BI dashboard to present findings effectively and support data-driven decision-making.
-
-### Machine Learning Integration
-Incorporate predictive analytics using machine learning models to forecast sales and enhance decision-making capabilities.
+### Real-Time Processing
+- **Streamlit Interface**: Developing a real-time image and video upload feature for efficient clinical use.
 
 ---
 
 ## Project Features
 
-### ETL Pipeline
-A comprehensive process to extract, clean, transform, and load data into MySQL for structured analysis.
+### Data Preprocessing
+- **Auto-Orientation**: Corrects the alignment of blood cells in images.
+- **Resizing**: Standardizes image dimensions to 640x640 pixels.
+  
+### Data Augmentation Techniques
+- Horizontal Flipping, Rotation, Shear, Brightness and Saturation Adjustments, and Blur were applied to improve model generalization.
 
-### Database Schema Design
-A star schema with the following components:
+### YOLOv12 Object Detection
+- **YOLOv12 Model**: YOLOv12's advanced architecture makes it suitable for detecting small objects, such as platelets, which are often challenging in blood smear images.
 
-- *Fact Table:* Sales
-- *Dimension Tables:*
-  - Customers
-  - Products
-  - Regions
-  - Time
+### Model Evaluation Metrics
+- Precision: 0.808
+- Recall: 0.892
+- mAP@50: 0.897
 
-### Interactive Dashboard
-Power BI visualizations to explore:
-- Regional sales performance
-- Product category and segment trends
-- Profitability metrics
-- Customer demographics
-- Sales forecasts using machine learning models
-
-### Machine Learning Models
-Sales Forecasting: Predict future sales using a Linear Regression model trained on historical sales data.
-
-Model Comparison: Evaluate multiple models (Random Forest, Gradient Boosting, Linear Regression) to select the best-performing one based on metrics like Mean Squared Error (MSE) and Mean Absolute Error (MAE).
+### Streamlit UI
+- Real-time blood cell detection from image/video uploads with bounding boxes, labels, and confidence scores.
 
 ---
 
 ## Technologies Used
 
-- *Python:* For ETL processes, utilizing libraries such as pandas and numpy.
-- *MySQL:* Robust database for efficient data storage and querying.
-- *Power BI:* For creating intuitive and interactive dashboards.
-- *CSV:* Input format for raw data.
-- *Excel:* Input format for raw data.
-- *Scikit-learn:* For building and evaluating machine learning models.
-- *Joblib:* For saving and loading trained models.
+- **YOLOv12 (Ultralytics)**: For object detection.
+- **Streamlit**: For developing the real-time web interface.
+- **Google Colab**: For model training with NVIDIA Tesla T4 GPU.
+- **OpenCV**: For image and video processing.
+- **Python Libraries**: numpy, pandas, matplotlib, etc., for data manipulation and visualization.
 
 ---
 
 ## Dataset
 
-- *Source:* Kaggle’s Superstore dataset
-- *Structure:*
-  - Orders.csv: Detailed sales, order, and shipping information.
-  - Customers.xlsx: Customer demographics and segmentation.
-  - Products.csv: Product categories and specifications.
-  - Shipping.xlsx: Shipping information.
-  - Time.csv: Encapsulates temporal details for time-based analysis
+The dataset used for training consists of blood cell images annotated for object detection:
+
+- **Original Images**: 364 images of RBCs, WBCs, and platelets.
+- **Augmented Dataset**: Expanded to 2,190 images using various augmentation techniques.
+
+### Dataset Composition
+
+- **RBCs**: Red Blood Cells.
+- **WBCs**: White Blood Cells.
+- **Platelets**: Small fragments aiding in clotting.
+
+### Dataset Accessibility
+
+The dataset is publicly available for academic and research purposes, accessible upon request.
 
 ---
 
 ## Key Files
 
-### ETL Process
-- extract_data.py: Script for extracting data from multiple data sources.
-- transform_data.py: Script for cleaning and transforming the dataset.
-- load_data.py: Script to load cleaned data into the MySQL DWH.
+### Preprocessing and Augmentation
+- `yolo_train_eval.ipynb`: Notebook for training the YOLOv12 model on the dataset.
+- `model_config.yaml`: Configuration file for YOLOv12 training.
 
-### Machine Learning
-- ml_sales_prediction.py: Script to train and evaluate machine learning models for sales forecasting.
-- predict_sales.py: Script to make predictions using the trained model.
-
-### Data Files
-- product data.csv
-- sales data.csv
-- shipping data.xlsx
-- customer data.xlsx
-- time data.csv
-
-### Visualization
-- project_bi_dashboard.pbix: Power BI dashboard file.
+### Real-Time Inference
+- `app.py`: Streamlit app that handles image/video uploads and runs inference on YOLOv12.
 
 ---
 
 ## How to Run the Project
 
 ### Step 1: Set Up the Environment
-Clone this repository:
-git clone https://github.com/AyaSaadawi/Superstore-BI-Dashboard-Analysis
+Clone the repository:
+```bash
+git clone https://github.com/YourUsername/blood-cell-detection-yolov12.git
+```
 
-### Step 2: Execute the ETL Process
-1. Run extract_data.py to extract raw datasets:
-   
-   python extract_data.py
-   
-2. Run transform_data.py to clean and transform raw datasets:
-   
-   python data_cleaning.py
-   
-3. Run load_data.py to load data to the MySQL DWH:
+### Step 2: Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
-   python load_data.py
+### Step 3: Train the Model
+Run the YOLOv12 training script:
+```bash
+python train_yolov12.py
+```
 
-### Step 3: Train and Evaluate Machine Learning Models
-1. Run ml_sales_prediction.py to train and evaluate models:
-    python ml_sales_prediction.py
+### Step 4: Real-Time Inference
+Start the Streamlit app to interact with the trained model:
+```bash
+streamlit run app.py
+```
 
-2. Run predict_sales.py to make predictions using the trained model:
-    python predict_sales.py
-
-### Step 4: Visualize Data
-Open project_bi_dashboard.pbix in Power BI and explore interactive visualizations.
+### Step 5: Upload Images or Videos
+Upload blood smear images or video streams to detect and classify RBCs, WBCs, and platelets in real-time.
 
 ---
 
-## Key Insights
+## Results and Evaluation
 
-- *Regional Sales:* Highest sales observed in the West region.
-- *Product Trends:* Office supplies consistently outperformed other categories.
-- *Profitability:* High-profit margins in specific product sub-categories such as binders and art supplies.
-- *Customer Insights:* Repeat customers contributed significantly to overall revenue.
-- *Sales Forecasts:* Predictions for future sales using machine learning models.
+The YOLOv12 model has been trained and evaluated on a dataset of blood cell images. The evaluation metrics are:
+
+- **Precision**: 0.808
+- **Recall**: 0.892
+- **mAP@50**: 0.897
+
+The model excels at detecting platelets with high precision and recall. Challenges remain with overlapping or blurry cells, which can affect detection performance.
 
 ---
 
 ## Future Work
 
-- Incorporate machine learning models for predictive analysis.
-- Extend the dashboard to include real-time data updates.
-- Enhance visualizations for mobile accessibility.
-- Deploy the machine learning model as an API for real-time predictions.
+- **Dataset Expansion**: Increase the dataset size to improve model accuracy and robustness.
+- **Real-Time Video Processing**: Improve the model’s capability to process video streams more efficiently.
+- **Model Optimization**: Explore further optimization techniques for real-time inference on resource-constrained devices.
+
 ---
 
 ## Contributing
-Contributions are welcomed! If you have ideas for improvement or new features, feel free to fork the repository and submit a pull request.
+
+Contributions are welcome! Feel free to fork the repository, open an issue, or submit a pull request with your improvements.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Acknowledgments
+
+- [Ultralytics YOLOv12 Documentation](https://docs.ultralytics.com)
+- [Streamlit Documentation](https://streamlit.io)
+- [Blood Cell Detection Dataset on Kaggle](https://www.kaggle.com/datasets/adhoppin/blood-cell-detection-dataset)
+- [Roboflow](https://roboflow.com/)
 
 ---
 
@@ -163,3 +161,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Acknowledgments
 - Datasets sourced from Kaggle for educational purposes.
 - Thanks to the open-source community for tools and libraries used in this project.
+
+
